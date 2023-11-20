@@ -14,9 +14,6 @@
 		upgrades = [
 			{ name: 'Reinforced index finger', multiplier: 2, for: 0, id: 0, cost: 100 },
 			{ name: 'Carpal tunnel prevention cream', multiplier: 2, for: 0, id: 1, cost: 500 },
-			{ name: 'Forwards from grandma', multiplier: 2, for: 1, id: 2, cost: 1000 },
-			{ name: 'Reinforced index finger', multiplier: 2, for: 0, id: 0, cost: 100 },
-			{ name: 'Carpal tunnel prevention cream', multiplier: 2, for: 0, id: 1, cost: 500 },
 			{ name: 'Forwards from grandma', multiplier: 2, for: 1, id: 2, cost: 1000 }
 		],
 		upgradesOwned = parseInt(localStorage.getItem('upgradesOwned')) || 0,
@@ -195,7 +192,7 @@
 		</div>
 		<div class="buildings storeSection">
 			{#each Object.entries(buildings) as building}
-				<button class="product" on:click={() => buyItem(building[0])}
+				<button class="product {cookies>=getPrice(building[1].base, inventory[building[0]], 1.15)?"enabled":"disabled"}" on:click={() => buyItem(building[0])}
 					><img class="cursor icon" src="{building[0]}.webp" alt="" />
 					<div class="content">
 						<div class="productName title">{building[0]}</div>
