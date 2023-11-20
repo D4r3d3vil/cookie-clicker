@@ -2,7 +2,6 @@
 	// variables
 	let cookies,
 		multiplier = 1.0,
-		x = 0,
 		inventory = {
 			cursor: parseInt(localStorage.getItem('cursor')) || 0,
 			grandma: parseInt(localStorage.getItem('grandma')) || 0
@@ -87,21 +86,6 @@
 	}
 	function clickAnimation(e) {
 		updateCookies(multiplier);
-		x++;
-		var div = document.createElement('div');
-		div.id = 'x' + x;
-		div.innerHTML = `+${multiplier}`;
-		div.style.top = e.clientY + 'px';
-		div.style.left = e.clientX - 10 + 'px';
-		div.style.position = 'absolute';
-		div.style.width = '25px';
-		div.style.height = '25px';
-		div.style.color = 'white';
-		div.style.fontWeight = 'bold';
-		div.style.animation = 'GoUp 2s forwards linear';
-		div.style.userSelect = 'none';
-		document.body.appendChild(div);
-		setTimeout(() => document.body.removeChild(div), 2000);
 	}
 	//utils
 	function cookiesToWords(cookies) {
@@ -273,7 +257,7 @@
 		height: 60px;
 	}
 	.upgrades:hover{
-		height: 120px;
+		height: fit-content;
 	}
 	.cookie {
 		width: 200px;
