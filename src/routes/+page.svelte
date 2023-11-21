@@ -31,7 +31,7 @@
 		return Object.keys(buildings)[id];
 	}
 	function buyUpgrade(){
-		let upgrade = upgrades[upgradesOwned+1]
+		let upgrade = upgrades[upgradesOwned]
 		if(cookies>=upgrade.cost){
 			cookies-=upgrade.cost
 			upgradesOwned++
