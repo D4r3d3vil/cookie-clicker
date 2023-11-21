@@ -94,7 +94,7 @@
 		} else {
 			let words = [
 				'',
-				'thousand',
+				'',
 				'million',
 				'billion',
 				'trillion',
@@ -168,7 +168,7 @@
 	<div class="store">
 		<h2 style="text-align: center; color: white;">Store</h2>
 		<div class="upgrades storeSection">
-			{#each upgrades as upgrade}
+			{#each upgrades.filter(i=>i.id>=upgradesOwned) as upgrade}
 				<div class="upgrade {cookies>=upgrade.cost?"enabled":"disabled"}" on:click={buyUpgrade}>
 					<img src="{upgrade.name}.webp" />
 				</div>
@@ -184,8 +184,7 @@
 							{cookiesToWords(getPrice(building[1].base, inventory[building[0]], 1.15))}
 						</span>
 						<div class="title owned">{inventory[building[0]]}</div>
-					</div></button
-				>
+					</div></button>
 				<br />
 			{/each}
 		</div>
@@ -198,7 +197,7 @@
 		width: 25vw;
 	}
 
-	.separatorLeft, .separatorRight {
+	.separatorLeft {
     width: 16px;
     height: 100vh;
     background: url(https://orteil.dashnet.org/cookieclicker/img/panelVertical.png?v=2) repeat-y;
