@@ -5,7 +5,7 @@ export async function POST({ request }) {
     const { username } = await request.json()
     if(db.has(username)) return json({status:400, message:'username already taken'})
     try {
-        db.set(username, '')
+        db.has(username, '.')
     } catch (error) {
         return json({err:error, status:200})
     }
