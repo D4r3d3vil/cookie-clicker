@@ -1,9 +1,8 @@
-import { error, json } from '@sveltejs/kit';
-import SimpleJsonDb from 'simple-json-db'
-const db = new SimpleJsonDb('./static/Data.json');
+import { json } from '@sveltejs/kit';
+let accounts = []
 export async function POST({ request }) {
     const { username } = await request.json()
-    if(db.has(username)) return json({status:400, message:'username already taken'})
-    db.set(username, '.')
+    if(accounts.includes(username)) return json({status:400, message:'username already taken'})
+    accounts.push(username)
     return json({status:200})
 }

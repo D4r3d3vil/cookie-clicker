@@ -7,7 +7,18 @@ leaderboard = await res.json()
 getLeaderboard()
 </script>
 {#if leaderboard}
+<table>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
 {#each leaderboard as contestant}
-    <p>{contestant.name}: {contestant.cookies}</p>    
-{/each}
-{/if}
+<tr>
+    <td>{leaderboard.findIndex(function(dict) {return dict.name == contestant.name})+1}</td>
+    <td>{contestant.name}</td>
+    <td>{contestant.cookies}</td>
+  </tr>
+  {/each}
+  </table>
+  {/if}
