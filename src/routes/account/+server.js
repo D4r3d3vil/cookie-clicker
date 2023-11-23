@@ -4,9 +4,6 @@ const db = new SimpleJsonDb('./static/Data.json');
 export async function POST({ request }) {
     const { username } = await request.json()
     if(db.has(username)) return json({status:400, message:'username already taken'})
-    try {
-        db.has(username, '.')
-    } catch (error) {
-        return json({err:error, status:200})
-    }
+    db.set(username, '.')
+    return json({status:200})
 }
