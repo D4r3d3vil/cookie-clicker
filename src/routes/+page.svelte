@@ -13,7 +13,7 @@
 		upgrades = [
 			{ name: 'Reinforced index finger', multiplier: 2, for: 0, id: 0, cost: 100, description: 'The mouse and cursors are <strong>twice</strong> as efficient.', footer: 'click click click...'},
 			{ name: 'Carpal tunnel prevention cream', multiplier: 2, for: 0, id: 1, cost: 500, description: 'The mouse and cursors are <strong>twice</strong> as efficient.', footer: 'it... it hurts to click' },
-			{ name: 'Forwards from grandma', multiplier: 2, for: 1, id: 2, cost: 1000, description: 'Grandmas are twice as efficient.', footer: "thought you'd get a kick out of this ;)" }
+			{ name: 'Forwards from grandma', multiplier: 2, for: 1, id: 2, cost: 1000, description: 'Grandmas are <strong>twice</strong> as efficient.', footer: "thought you'd get a kick out of this ;)" }
 		],
 		upgradesOwned = parseInt(localStorage.getItem('upgradesOwned')) || 0,
 		cps,
@@ -74,7 +74,6 @@
 	}
 	function updateCookies(number) {
 		cookies = cookies + number;
-		if (cookies < 1000000) cookies = Math.round(cookies * 10) / 10;
 		saveCookies();
 	}
 	function getPrice(basePrice, amount, priceIncrease) {
@@ -177,8 +176,11 @@
   var y = e.clientY;
   document.getElementById('description').style.top = (y) + "px";
 });
+function round(num){
+	return Math.round(num*10) / 10
+}
 </script>
-<div class="description" id="description" style="display: none;"><div id="tooltipAnchor"><div id="tooltip"><div style=""></div><div style=""><div class="icon" style="float:left;"><img src="{description.imageName}.webp" alt=""></div><div style="float:right;text-align:right;"><span class="price">{description.price}</span></div><div class="name">{description.name}</div><small><div class="tag">{#if description.owned}owned: {description.owned}{:else}upgrade{/if}</div></small>{#if description.owned}<div class="descriptionText" style="float: right;"><q style="color: gray;">{description.text}</q></div>{:else} <span>{description.text}</span> {/if}{#if description.owned}<br><div class="descriptionBlock">each {description.name} produces <b>{description.production} cookies</b> per second</div><div class="descriptionBlock">{description.owned} cursors producing <b>{description.owned*description.production} cookies</b> per second (<b>{Math.round((description.owned*description.production/cps)*10)*10}%</b> of total CpS)</div>{:else} <br> <div class="footerText" style="float: right;"><q style="color: gray;">{description.footer}</q></div> {/if}</div></div></div>
+<div class="description" id="description" style="display: none;"><div id="tooltipAnchor"><div id="tooltip"><div style=""></div><div style=""><div class="icon" style="float:left;"><img src="{description.imageName}.webp" alt=""></div><div style="float:right;text-align:right;"><span class="price">{description.price}</span></div><div class="name">{description.name}</div><small><div class="tag">{#if description.owned}owned: {description.owned}{:else}upgrade{/if}</div></small>{#if description.owned}<div class="descriptionText" style="float: right;"><q style="color: gray;">{description.text}</q></div>{:else} <span style="font-weight: 300;">{@html description.text}</span> {/if}{#if description.owned}<br><div class="descriptionBlock">each {description.name} produces <b>{description.production} cookies</b> per second</div><div class="descriptionBlock">{description.owned} cursors producing <b>{round(description.owned*description.production)} cookies</b> per second (<b>{round(description.owned*description.production/cps)*100}%</b> of total CpS)</div>{:else} <br> <div class="footerText" style="float: right;"><q style="color: gray;">{description.footer}</q></div> {/if}</div></div></div>
 </div>
 {#if username}
 	<a href="/leaderboard">leaderboard</a>
