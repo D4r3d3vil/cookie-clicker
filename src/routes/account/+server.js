@@ -7,7 +7,6 @@ export async function POST({ request }) {
     try {
         db.set(username, '')
     } catch (error) {
-        let err = error        
+        return json({err:error, status:200})
     }
-    return json({error:err, status:200})
 }
