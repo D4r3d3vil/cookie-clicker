@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import SimpleJsonDb from 'simple-json-db'
-const db = new SimpleJsonDb('./src/Data.json');
+const db = new SimpleJsonDb('./src/lib/Data.json');
 export function GET() {
     return json(db.get("leaderboard"));
 }
